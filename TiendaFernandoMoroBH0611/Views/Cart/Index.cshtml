@@ -1,0 +1,76 @@
+﻿@model IEnumerable<TiendaFernandoMoroBH0611.Models.ProductToPurchase>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@if (TempData["errorMessage"] != null)
+{
+    <div style="background-color:lightyellow; padding:2em;">@TempData["errorMessage"]</div>
+}
+
+@{
+    var cart = (TiendaFernandoMoroBH0611.Models.Cart)Model;
+}
+
+<h3 style="text-align:right;">Total amount: @cart.TotalAmount()</h3>
+
+<p>
+    [@Html.ActionLink("Show Products", "Index", "Products", null, null)]
+</p>
+<table class="table">
+    <tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.product.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.product.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.product.Stock)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.product.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.product.Image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.number)
+        </th>
+        <th></th>
+    </tr>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.product.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.product.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.product.Stock)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.product.Price)
+        </td>
+        <td>
+            <img src="@Html.DisplayFor(modelItem => item.product.Image)" alt="Item Image" style="width: 100px; height: 100px;" />
+            
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.number)
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "Delete", new { id=item.product.Id })
+        </td>
+    </tr>
+}
+</table>
+
+<h3 style="text-align:right;">@Html.ActionLink("Purchase", "Purchase")</h3>

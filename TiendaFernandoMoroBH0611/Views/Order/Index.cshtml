@@ -1,0 +1,76 @@
+﻿@model IEnumerable<TiendaFernandoMoroBH0611.Models.OrderListable>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    [@Html.ActionLink("Show Products", "Index", "Products", null, null)]
+    [@Html.ActionLink("Show Cart", "Index", "Cart", null, null)]
+</p>
+
+@foreach (var item in Model)
+{
+    <h3>Purchased at @item.datetime</h3>
+    <table class="table">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Stock
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                Image
+            </th>
+            <th>
+                Number
+            </th>
+        </tr>
+
+
+        @foreach (var p in item.productPurchased)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => p.product.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => p.product.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => p.product.Stock)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => p.product.Price)
+                </td>
+                <td>
+                    <img src="@Html.DisplayFor(modelItem => p.product.Image)" alt="Item Image" style="width: 100px; height: 100px;" />
+
+                </td>
+                <td>
+                    @Html.DisplayFor(model => p.number)
+                </td>
+            </tr>
+        }
+    </table>
+
+
+
+
+
+        foreach (var pp in item.productPurchased)
+        {
+
+        }
+
+}
+
